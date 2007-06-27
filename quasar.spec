@@ -1,7 +1,7 @@
 Summary:	Accounting software
 Name:		quasar
 Version:	1.4.7_GPL
-Release:	%mkrel 5
+Release:	%mkrel 6
 License:	GPL
 Group:		Office
 URL:		http://www.linuxcanada.com
@@ -102,29 +102,6 @@ auth       sufficient   pam_rootok.so
 auth       required pam_stack.so service=system-auth
 account    required pam_permit.so
 session    optional pam_xauth.so
-EOF
-
-# (sb) menu entries
-install -d $RPM_BUILD_ROOT%{_menudir}
-
-cat << EOF > $RPM_BUILD_ROOT%{_menudir}/%{name}-client
-?package(%{name}-client): \
-needs="x11" \
-section="Applications/Finances" \
-longtitle="Quasar Accounting Software - Setup" \
-title="Quasar Setup" \
-icon="finances_section.png" \
-command="quasar_setup" \
-xdg="true"
-
-?package(%{name}-client): \
-needs="x11" \
-section="Applications/Finances" \
-longtitle="Quasar Accounting Software" \
-title="Quasar" \
-icon="finances_section.png" \
-command="quasar" \
-xdg="true"
 EOF
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
@@ -246,7 +223,6 @@ fi
 %{_datadir}/%{name}/setup/quasar_client.xpm
 %{_datadir}/%{name}/setup/quasar_setup.xpm
 
-%{_menudir}/%{name}-client
 
 %files doc
 %defattr (-,root,root)
