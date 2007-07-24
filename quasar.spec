@@ -1,7 +1,7 @@
 Summary:	Accounting software
 Name:		quasar
 Version:	1.4.7_GPL
-Release:	%mkrel 6
+Release:	%mkrel 7
 License:	GPL
 Group:		Office
 URL:		http://www.linuxcanada.com
@@ -99,7 +99,7 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/pam.d
 cat << EOF > $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/%{name}_setup
 #%PAM-1.0
 auth       sufficient   pam_rootok.so
-auth       required pam_stack.so service=system-auth
+auth       include  system-auth
 account    required pam_permit.so
 session    optional pam_xauth.so
 EOF
@@ -113,7 +113,7 @@ Exec=%{_bindir}/quasar_setup
 Icon=finances_section
 Terminal=false
 Type=Application
-Categories=X-MandrivaLinux-MoreApplications-Finances;Office;Finance;
+Categories=Office;Finance;
 EOF
 
 cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
@@ -124,7 +124,7 @@ Exec=%{_bindir}/quasar
 Icon=finances_section
 Terminal=false
 Type=Application
-Categories=X-MandrivaLinux-MoreApplications-Finances;Office;Finance;
+Categories=Office;Finance;
 EOF
 
 
