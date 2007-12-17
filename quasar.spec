@@ -18,7 +18,6 @@ BuildRequires:	postgresql-devel
 BuildRequires:	firebird-devel 
 BuildRequires:	libicu-devel
 BuildRequires:	xinetd
-Buildroot:	%{_tmppath}/%{name}-%{version}-root
 
 %description
 There is no package without a qualifier so this is not built.
