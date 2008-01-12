@@ -1,8 +1,8 @@
 Summary:	Accounting software
 Name:		quasar
 Version:	1.4.7_GPL
-Release:	%mkrel 7
-License:	GPL
+Release:	%mkrel 8
+License:	GPLv2
 Group:		Office
 URL:		http://www.linuxcanada.com
 Source0:	ftp://ftp.linuxcanada.com/pub/Quasar/1.4.7/source/%{name}-%{version}.tar.bz2
@@ -77,26 +77,26 @@ cat > %{name}-server.logrotate <<EOF
 EOF
 
 %install
-rm -rf $RPM_BUILD_ROOT
-%make install PREFIX=$RPM_BUILD_ROOT LIBDIR=%{_libdir}
-install -d $RPM_BUILD_ROOT%{_logdir}/%{name}
+rm -rf %{buildroot}
+%make install PREFIX=%{buildroot} LIBDIR=%{_libdir}
+install -d %{buildroot}%{_logdir}/%{name}
 
-mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d/
-install -m644 %{name}-server.logrotate $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d/%{name}-server
+mkdir -p %{buildroot}%{_sysconfdir}/logrotate.d/
+install -m644 %{name}-server.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/%{name}-server
 
 # (sb) rpmlint happiness
-chmod 0644 $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/*.cfg
-chmod 0755 $RPM_BUILD_ROOT%{_libdir}/%{name}/drivers/*
-chmod 0755 $RPM_BUILD_ROOT%{_localstatedir}/%{name}/databases
+chmod 0644 %{buildroot}%{_sysconfdir}/%{name}/*.cfg
+chmod 0755 %{buildroot}%{_libdir}/%{name}/drivers/*
+chmod 0755 %{buildroot}%{_localstatedir}/%{name}/databases
 
 # setup links for consolehelpper support to allow root setup
-pushd $RPM_BUILD_ROOT%{_bindir}
+pushd %{buildroot}%{_bindir}
 ln -sf consolehelper %{name}_setup
 popd
 
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/pam.d
+install -d %{buildroot}%{_sysconfdir}/pam.d
 
-cat << EOF > $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/%{name}_setup
+cat << EOF > %{buildroot}%{_sysconfdir}/pam.d/%{name}_setup
 #%PAM-1.0
 auth       sufficient   pam_rootok.so
 auth       include  system-auth
@@ -104,8 +104,8 @@ account    required pam_permit.so
 session    optional pam_xauth.so
 EOF
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
-cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}-setup.desktop << EOF
+mkdir -p %{buildroot}%{_datadir}/applications
+cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}-setup.desktop << EOF
 [Desktop Entry]
 Name=Quasar Setup
 Comment=Quasar Accounting Software - Setup
@@ -116,7 +116,7 @@ Type=Application
 Categories=Office;Finance;
 EOF
 
-cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
+cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
 Name=Quasar
 Comment=Quasar Accounting Software
@@ -127,9 +127,8 @@ Type=Application
 Categories=Office;Finance;
 EOF
 
-
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %pre server
 %_pre_useradd %{name} %{_localstatedir}/%{name} /bin/bash
@@ -223,11 +222,8 @@ fi
 %{_datadir}/%{name}/setup/quasar_client.xpm
 %{_datadir}/%{name}/setup/quasar_setup.xpm
 
-
 %files doc
 %defattr (-,root,root)
 %doc Readme.txt Release_*.txt 
 %doc quasar_reference-1.4.7.pdf quasar_features-1.4.7.pdf
-
-
 
