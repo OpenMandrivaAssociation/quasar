@@ -11,6 +11,21 @@ Source2:	ftp://ftp.linuxcanada.com/pub/Quasar/1.4.7/manuals/quasar_guide-1.4.7.p
 Source3:	ftp://ftp.linuxcanada.com/pub/Quasar/1.4.7/manuals/quasar_reference-1.4.7.pdf
 Source4:	ftp://ftp.linuxcanada.com/pub/Quasar/1.4.7/manuals/quasar_features-1.4.7.pdf
 Patch0:		quasar-1.4.7_GPL-not-in-opt.patch
+# Use lockf, not flock, as x86_64 appears to have trouble with flock
+# - AdamW 2008/01
+Patch1:		quasar-1.4.7_GPL-lockf.patch
+# Use #ifdef __linux__, not #ifdef LINUX, as this breaks build on
+# x86-64 - AdamW 2008/01
+Patch2:		quasar-1.4.7_GPL-ifdeflinux.patch
+# .pro files have special definitions for 'linux-g++', but when
+# building on x86-64, we're 'linux-g++-64' - so duplicate the
+# definitions for that platform - AdamW 2008/01
+Patch3:		quasar-1.4.7_GPL-x86_64_defs.patch
+# Use -fPIC for build, otherwise fails on x86-64 - AdamW 2008/01
+Patch4:		quasar-1.4.7_GPL-fpic.patch
+# Fix some variable problems which prevent firebird driver building
+# on x86-64 (thanks Anssi) - AdamW 2008/01
+Patch5:		quasar-1.4.7_GPL-firebird_x86_64.patch
 BuildRequires:	qt3-devel 
 BuildRequires:	tk tk-devel
 BuildRequires:	tcl tcl-devel
@@ -58,10 +73,16 @@ This package installs additional Quasar docmentation.
 
 %setup -q
 %patch0 -p1 -b .notinopt
-cp %SOURCE1 %SOURCE2 %SOURCE3 %SOURCE4 .
+%patch1 -p1 -b .lockf
+%patch2 -p1 -b .ifdeflinux
+%patch3 -p1 -b .x86_64_deps
+%patch4 -p1 -b .fpic
+%patch5 -p1 -b .firebird_x86_64
+
+cp %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} .
 
 %build
-%configure --with-firebird=%{_prefix}
+%configure2_5x --with-firebird=%{_prefix}
 %make all
 
 cat > %{name}-server.logrotate <<EOF
@@ -176,10 +197,10 @@ fi
 %dir %{_libdir}/%{name}/drivers
 %dir %{_datadir}/%{name}/setup
 %dir %{_logdir}/%{name}
-%_sbindir/quasard
-%_sbindir/quasar_clientd
-%_sbindir/quasar_import
-%_sbindir/quasar_report
+%{_sbindir}/quasard
+%{_sbindir}/quasar_clientd
+%{_sbindir}/quasar_import
+%{_sbindir}/quasar_report
 
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %{_sysconfdir}/%{name}/server.cfg
