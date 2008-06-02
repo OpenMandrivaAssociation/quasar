@@ -108,7 +108,7 @@ install -m644 %{name}-server.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/%{
 # (sb) rpmlint happiness
 chmod 0644 %{buildroot}%{_sysconfdir}/%{name}/*.cfg
 chmod 0755 %{buildroot}%{_libdir}/%{name}/drivers/*
-chmod 0755 %{buildroot}%{_localstatedir}/%{name}/databases
+chmod 0755 %{buildroot}%{_localstatedir}/lib/%{name}/databases
 
 # setup links for consolehelpper support to allow root setup
 pushd %{buildroot}%{_bindir}
@@ -152,7 +152,7 @@ EOF
 rm -rf %{buildroot}
 
 %pre server
-%_pre_useradd %{name} %{_localstatedir}/%{name} /bin/bash
+%_pre_useradd %{name} %{_localstatedir}/lib/%{name} /bin/bash
 
 %post server
 if [ "$1" = 1 ]; then
@@ -161,7 +161,7 @@ if [ "$1" = 1 ]; then
 
     # Set file ownership and permissions
     chgrp -R quasar %{_sysconfdir}/%{name}
-    chgrp -R quasar %{_localstatedir}/%{name}/data
+    chgrp -R quasar %{_localstatedir}/lib/%{name}/data
 
     # Restart xinetd so it find new quasar entry
     /etc/init.d/xinetd restart
@@ -174,7 +174,7 @@ if [ "$1" = 0 ]; then
 fi
 
 %pre client
-%_pre_useradd %{name} %{_localstatedir}/%{name} /bin/bash
+%_pre_useradd %{name} %{_localstatedir}/lib/%{name} /bin/bash
 
 %post client
 if [ "$1" = 1 ]; then
@@ -189,11 +189,11 @@ fi
 %files server
 %defattr (-,root,root)
 %doc quasar_install-1.4.7.pdf 
-%dir %{_localstatedir}/%{name}
-%dir %{_localstatedir}/%{name}/backup
-%dir %{_localstatedir}/%{name}/data
-%dir %{_localstatedir}/%{name}/data/companies
-%dir %{_localstatedir}/%{name}/databases
+%dir %{_localstatedir}/lib/%{name}
+%dir %{_localstatedir}/lib/%{name}/backup
+%dir %{_localstatedir}/lib/%{name}/data
+%dir %{_localstatedir}/lib/%{name}/data/companies
+%dir %{_localstatedir}/lib/%{name}/databases
 %dir %{_libdir}/%{name}/drivers
 %dir %{_datadir}/%{name}/setup
 %dir %{_logdir}/%{name}
@@ -209,15 +209,15 @@ fi
 %config(noreplace) %{_sysconfdir}/xinetd.d/quasar
 %config(noreplace) %{_sysconfdir}/logrotate.d/%{name}-server
 
-%{_localstatedir}/%{name}/data/cheque_fmts
-%{_localstatedir}/%{name}/data/handheld
-%{_localstatedir}/%{name}/data/models
-%{_localstatedir}/%{name}/data/reports
-%{_localstatedir}/%{name}/data/screens
-%{_localstatedir}/%{name}/data/shelf_labels
+%{_localstatedir}/lib/%{name}/data/cheque_fmts
+%{_localstatedir}/lib/%{name}/data/handheld
+%{_localstatedir}/lib/%{name}/data/models
+%{_localstatedir}/lib/%{name}/data/reports
+%{_localstatedir}/lib/%{name}/data/screens
+%{_localstatedir}/lib/%{name}/data/shelf_labels
 %{_libdir}/%{name}/drivers/libfirebird_driver.so
 %{_libdir}/%{name}/drivers/libpostgresql_driver.so
-%{_localstatedir}/%{name}/import
+%{_localstatedir}/lib/%{name}/import
 %{_datadir}/%{name}/setup/quasar_setup.xpm
 
 %files client
