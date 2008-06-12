@@ -181,10 +181,14 @@ if [ "$1" = 1 ]; then
     # Set file ownership and permissions
     chgrp -R %{name} %{_sysconfdir}/%{name}
 fi
+%if %mdkversion < 200900
 %{update_menus}
+%endif
 
+%if %mdkversion < 200900
 %postun client
 %{clean_menus}
+%endif
 
 %files server
 %defattr (-,root,root)
