@@ -1,7 +1,7 @@
 Summary:	Accounting software
 Name:		quasar
 Version:	1.4.7_GPL
-Release:	%mkrel 11
+Release:	%mkrel 12
 License:	GPLv2
 Group:		Office
 URL:		http://www.linuxcanada.com
@@ -26,10 +26,12 @@ Patch4:		quasar-1.4.7_GPL-fpic.patch
 # Fix some variable problems which prevent firebird driver building
 # on x86-64 (thanks Anssi) - AdamW 2008/01
 Patch5:		quasar-1.4.7_GPL-firebird_x86_64.patch
+# Fix build for GCC 4.3 (missing include) - AdamW 2008/12
+Patch6:		quasar-1.4.7_GPL-gcc43.patch
 BuildRequires:	qt3-devel 
 BuildRequires:	tk tk-devel
 BuildRequires:	tcl tcl-devel
-BuildRequires:	postgresql-devel 
+BuildRequires:	postgresql-devel-virtual
 BuildRequires:	firebird-devel 
 BuildRequires:	libicu-devel
 BuildRequires:	xinetd
@@ -78,11 +80,12 @@ This package installs additional Quasar docmentation.
 %patch3 -p1 -b .x86_64_deps
 %patch4 -p1 -b .fpic
 %patch5 -p1 -b .firebird_x86_64
+%patch6 -p1 -b .gcc43
 
 cp %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} .
 
 %build
-%configure2_5x --with-firebird=%{_prefix}
+QTDIR=%{qt3dir} %configure2_5x --with-firebird=%{_prefix}
 %make all
 
 cat > %{name}-server.logrotate <<EOF
