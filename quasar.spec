@@ -1,7 +1,7 @@
 Summary:	Accounting software
 Name:		quasar
 Version:	1.4.7_GPL
-Release:	%mkrel 12
+Release:	%mkrel 13
 License:	GPLv2
 Group:		Office
 URL:		http://www.linuxcanada.com
