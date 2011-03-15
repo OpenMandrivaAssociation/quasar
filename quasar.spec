@@ -28,6 +28,7 @@ Patch4:		quasar-1.4.7_GPL-fpic.patch
 Patch5:		quasar-1.4.7_GPL-firebird_x86_64.patch
 # Fix build for GCC 4.3 (missing include) - AdamW 2008/12
 Patch6:		quasar-1.4.7_GPL-gcc43.patch
+Patch7:		quasar-1.4.7_GPL-link.patch
 BuildRequires:	qt3-devel 
 BuildRequires:	tk tk-devel
 BuildRequires:	tcl tcl-devel
@@ -81,6 +82,7 @@ This package installs additional Quasar docmentation.
 %patch4 -p1 -b .fpic
 %patch5 -p1 -b .firebird_x86_64
 %patch6 -p1 -b .gcc43
+%patch7 -p0 -b .link
 
 cp %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} .
 
