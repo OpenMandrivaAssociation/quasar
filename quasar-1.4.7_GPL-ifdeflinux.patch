@@ -1,0 +1,11 @@
+--- quasar-1.4.7_GPL/database/quasar_client.cpp	2008-01-12 11:59:31.000000000 -0800
++++ quasar-1.4.7_GPL/database/quasar_client.cpp.new	2008-01-12 11:59:24.000000000 -0800
+@@ -49,7 +49,7 @@
+ #include <qsocketdevice.h>
+ #include <unicode/locid.h>
+ 
+-#ifdef LINUX
++#ifdef __linux__
+ #include <errno.h>
+ #include <unistd.h>
+ #include <netinet/in.h>

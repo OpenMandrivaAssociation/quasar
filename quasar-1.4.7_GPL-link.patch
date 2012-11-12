@@ -1,0 +1,36 @@
+--- postgresql_driver/postgresql_driver.pro.in.link	2011-03-15 04:03:31.000000000 +0100
++++ postgresql_driver/postgresql_driver.pro.in	2011-03-15 04:03:50.000000000 +0100
+@@ -11,13 +11,13 @@
+ 
+ # Linux setup
+ linux-g++ {
+-LIBS		= -lquasar_driver -lquasar_widget -lquasar_util
++LIBS		= -lquasar_driver -lquasar_widget -lquasar_util -ldl -licui18n -licuuc
+ TARGETDEPS	= ../lib/libquasar_driver.a ../lib/libquasar_widget.a \
+ 		  ../lib/libquasar_util.a
+ }
+ 
+ linux-g++-64 {
+-LIBS		= -lquasar_driver -lquasar_widget -lquasar_util
++LIBS		= -lquasar_driver -lquasar_widget -lquasar_util -ldl -licui18n -licuuc
+ TARGETDEPS	= ../lib/libquasar_driver.a ../lib/libquasar_widget.a \
+ 		  ../lib/libquasar_util.a
+ }
+--- firebird_driver/firebird_driver.pro.in.link	2011-03-15 09:29:39.000000000 +0100
++++ firebird_driver/firebird_driver.pro.in	2011-03-15 09:31:41.000000000 +0100
+@@ -11,13 +11,13 @@
+ 
+ # Linux setup
+ linux-g++ {
+-LIBS		= -lquasar_driver -lquasar_widget -lquasar_util
++LIBS		= -lquasar_driver -lquasar_widget -lquasar_util -licui18n -licuuc -ldl
+ TARGETDEPS	= ../lib/libquasar_driver.a ../lib/libquasar_widget.a \
+ 		  ../lib/libquasar_util.a
+ }
+ 
+ linux-g++-64 {
+-LIBS		= -lquasar_driver -lquasar_widget -lquasar_util
++LIBS		= -lquasar_driver -lquasar_widget -lquasar_util -licui18n -licuuc -ldl
+ TARGETDEPS	= ../lib/libquasar_driver.a ../lib/libquasar_widget.a \
+ 		  ../lib/libquasar_util.a
+ }

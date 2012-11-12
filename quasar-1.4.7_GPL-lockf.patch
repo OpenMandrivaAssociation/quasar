@@ -1,0 +1,28 @@
+--- quasar-1.4.7_GPL/utility/message_log.cpp	2008-01-12 11:46:57.000000000 -0800
++++ quasar-1.4.7_GPL/utility/message_log.cpp.new	2008-01-12 11:46:49.000000000 -0800
+@@ -26,6 +26,7 @@
+ 
+ #include <qfile.h>
+ #include <qdatetime.h>
++#include <unistd.h>
+ #include <stdarg.h>
+ #include <stdlib.h>
+ 
+@@ -96,7 +96,7 @@
+ 
+     if (logFile.isOpen()) {
+ #ifndef WIN32
+-	flock(logFile.handle(), LOCK_EX);
++	lockf(logFile.handle(), F_LOCK, 0);
+ #endif
+ 	logFile.writeBlock(date, date.length());
+ 	logFile.writeBlock(typeString, typeString.length());
+@@ -104,7 +104,7 @@
+ 	logFile.writeBlock("\n", 1);
+ 	logFile.flush();
+ #ifndef WIN32
+-	flock(logFile.handle(), LOCK_UN);
++	lockf(logFile.handle(), F_ULOCK, 0);
+ #endif
+     }
+ 

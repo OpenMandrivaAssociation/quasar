@@ -1,0 +1,71 @@
+--- quasar-1.4.7_GPL/setup/quasar.xinetd.notinopt	2005-07-26 11:58:01.000000000 -0400
++++ quasar-1.4.7_GPL/setup/quasar.xinetd	2005-07-26 11:59:49.000000000 -0400
+@@ -8,7 +8,7 @@
+ 	user = quasar
+ 	group = quasar
+ 	instances = UNLIMITED
+-	server = /opt/quasar/bin/quasar_clientd
++	server = /usr/sbin/quasar_clientd
+ #	server_args = -debug
+ 	log_on_success += USERID
+ 	log_on_failure += USERID
+--- quasar-1.4.7_GPL/install.in.notinopt	2005-06-23 00:06:12.000000000 -0400
++++ quasar-1.4.7_GPL/install.in	2005-07-26 11:59:07.000000000 -0400
+@@ -26,19 +26,19 @@
+ INSTALL=/usr/bin/install
+ 
+ # Install locations
+-TOP_DIR=/opt/quasar
+-CONFIG_DIR=$TOP_DIR/config
+-PROGRAM_DIR=$TOP_DIR/bin
+-SERVER_DIR=$TOP_DIR/bin
+-DATA_DIR=$TOP_DIR/data
+-BACKUP_DIR=$TOP_DIR/backup
+-IMPORT_DIR=$TOP_DIR/import
+-DB_DIR=$TOP_DIR/databases
+-DRIVER_DIR=$TOP_DIR/drivers
+-LOCALE_DIR=$TOP_DIR/locales
+-SETUP_DIR=$TOP_DIR/setup
++TOP_DIR=
++CONFIG_DIR=$TOP_DIR/etc/quasar
++PROGRAM_DIR=$TOP_DIR/usr/bin
++SERVER_DIR=$TOP_DIR/usr/sbin
++DATA_DIR=$TOP_DIR/var/lib/quasar/data
++BACKUP_DIR=$TOP_DIR/var/lib/quasar/backup
++IMPORT_DIR=$TOP_DIR/var/lib/quasar/import
++DB_DIR=$TOP_DIR/var/lib/quasar/databases
++DRIVER_DIR=$TOP_DIR$LIBDIR/quasar/drivers
++LOCALE_DIR=$TOP_DIR/usr/share/quasar/locales
++SETUP_DIR=$TOP_DIR/usr/share/quasar/setup
+ DOC_DIR=$TOP_DIR
+-POS_DATA_DIR=$TOP_DIR/pos_data
++POS_DATA_DIR=$TOP_DIR/var/lib/quasar/pos_data
+ 
+ # Version with prefix for install command
+ CONFIG_DIR_P=$PREFIX$CONFIG_DIR
+@@ -92,12 +92,6 @@
+     $INSTALL -m 0664 data/shelf_labels/*.xml $DATA_DIR_P/shelf_labels
+     $INSTALL -m 0664 import/*.xml $IMPORT_DIR_P
+     $INSTALL -m 0664 setup/quasar_setup.xpm $SETUP_DIR_P
+-    $INSTALL -m 0664 Readme.txt $DOC_DIR_P
+-    $INSTALL -m 0664 Release_143.txt $DOC_DIR_P
+-    $INSTALL -m 0664 Release_144.txt $DOC_DIR_P
+-    $INSTALL -m 0664 Release_145.txt $DOC_DIR_P
+-    $INSTALL -m 0664 Release_146.txt $DOC_DIR_P
+-    $INSTALL -m 0664 Release_147.txt $DOC_DIR_P
+ 
+     # Generate server.cfg file
+     echo -e "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE ServerConfig>\n<ServerConfig>\n  <port>0</port>\n  <systemId>0</systemId>\n  <dataDir>$DATA_DIR</dataDir>\n  <driverDir>$DRIVER_DIR</driverDir>\n  <backupDir>$BACKUP_DIR</backupDir>\n  <importDir>$IMPORT_DIR</importDir>\n  <adminPassword>admin</adminPassword>\n</ServerConfig>" >$CONFIG_DIR_P/server.cfg
+@@ -173,12 +167,6 @@
+     $INSTALL -m 0664 locales/en_CA/messages.ts $LOCALE_DIR_P/en_CA
+     $INSTALL -m 0664 locales/en_CA/help/*.html $LOCALE_DIR_P/en_CA/help
+     $INSTALL -m 0664 locales/en_CA/help/images/*.png $LOCALE_DIR_P/en_CA/help/images
+-    $INSTALL -m 0664 Readme.txt $DOC_DIR_P
+-    $INSTALL -m 0664 Release_143.txt $DOC_DIR_P
+-    $INSTALL -m 0664 Release_144.txt $DOC_DIR_P
+-    $INSTALL -m 0664 Release_145.txt $DOC_DIR_P
+-    $INSTALL -m 0664 Release_146.txt $DOC_DIR_P
+-    $INSTALL -m 0664 Release_147.txt $DOC_DIR_P
+     $INSTALL -m 0664 setup/quasar_client.xpm $SETUP_DIR_P
+     $INSTALL -m 0664 setup/quasar_setup.xpm $SETUP_DIR_P
+ 

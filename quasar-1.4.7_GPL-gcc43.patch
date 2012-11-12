@@ -1,0 +1,31 @@
+--- quasar-1.4.7_GPL/quasar_clientd/quasar_clientd.cpp	2005-03-01 11:47:04.000000000 -0800
++++ quasar-1.4.7_GPL/quasar_clientd/quasar_clientd.cpp.new	2008-12-03 14:59:54.000000000 -0800
+@@ -30,6 +30,7 @@
+ #include <errno.h>
+ #include <signal.h>
+ #include <unistd.h>
++#include <cstdlib>
+ 
+ void
+ handleSignal(int signum)
+--- quasar-1.4.7_GPL/gui/main_window.cpp	2005-03-01 12:08:24.000000000 -0800
++++ quasar-1.4.7_GPL/gui/main_window.cpp.new	2008-12-03 15:51:48.000000000 -0800
+@@ -63,6 +63,8 @@
+ #include <qwidgetlist.h>
+ #include <qmessagebox.h>
+ 
++#include <cstdlib>
++
+ #define USE_COMPAT_CONST
+ #include <tcl.h>
+ 
+--- quasar-1.4.7_GPL/quasar/quasar.cpp	2005-02-24 01:38:41.000000000 -0800
++++ quasar-1.4.7_GPL/quasar/quasar.cpp.new	2008-12-03 16:09:43.000000000 -0800
+@@ -31,6 +31,7 @@
+ #include <qmessagebox.h>
+ #include <qdir.h>
+ #include <unicode/locid.h>
++#include <cstdlib>
+ 
+ int
+ main(int argc, char** argv)

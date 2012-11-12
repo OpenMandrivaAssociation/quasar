@@ -1,0 +1,75 @@
+--- quasar-1.4.7_GPL/Makefile.in	2005-06-22 21:06:12.000000000 -0700
++++ quasar-1.4.7_GPL/Makefile.in.new	2008-01-12 14:11:51.000000000 -0800
+@@ -68,55 +68,55 @@
+ endif
+ 
+ utility/Makefile: utility/utility.pro
+-	cd utility && $(QMAKE) utility.pro -o Makefile
++	cd utility && $(QMAKE) QMAKE_CXXFLAGS+=-fPIC utility.pro -o Makefile
+ 
+ widget/Makefile: widget/widget.pro
+-	cd widget && $(QMAKE) widget.pro -o Makefile
++	cd widget && $(QMAKE) QMAKE_CXXFLAGS+=-fPIC widget.pro -o Makefile
+ 
+ business/Makefile: business/business.pro
+-	cd business && $(QMAKE) business.pro -o Makefile
++	cd business && $(QMAKE) QMAKE_CXXFLAGS+=-fPIC business.pro -o Makefile
+ 
+ db_driver/Makefile: db_driver/db_driver.pro
+-	cd db_driver && $(QMAKE) db_driver.pro -o Makefile
++	cd db_driver && $(QMAKE) QMAKE_CXXFLAGS+=-fPIC db_driver.pro -o Makefile
+ 
+ database/Makefile: database/database.pro
+-	cd database && $(QMAKE) database.pro -o Makefile
++	cd database && $(QMAKE) QMAKE_CXXFLAGS+=-fPIC database.pro -o Makefile
+ 
+ quasard/Makefile: quasard/quasard.pro
+-	cd quasard && $(QMAKE) quasard.pro -o Makefile
++	cd quasard && $(QMAKE) QMAKE_CXXFLAGS+=-fPIC quasard.pro -o Makefile
+ 
+ quasar_clientd/Makefile: quasar_clientd/quasar_clientd.pro
+-	cd quasar_clientd && $(QMAKE) quasar_clientd.pro -o Makefile
++	cd quasar_clientd && $(QMAKE) QMAKE_CXXFLAGS+=-fPIC quasar_clientd.pro -o Makefile
+ 
+ quasar_setup/Makefile: quasar_setup/quasar_setup.pro
+-	cd quasar_setup && $(QMAKE) quasar_setup.pro -o Makefile
++	cd quasar_setup && $(QMAKE) QMAKE_CXXFLAGS+=-fPIC quasar_setup.pro -o Makefile
+ 
+ repgen/Makefile: repgen/repgen.pro
+-	cd repgen && $(QMAKE) repgen.pro -o Makefile
++	cd repgen && $(QMAKE) QMAKE_CXXFLAGS+=-fPIC repgen.pro -o Makefile
+ 
+ gui/Makefile: gui/gui.pro
+-	cd gui && $(QMAKE) gui.pro -o Makefile
++	cd gui && $(QMAKE) QMAKE_CXXFLAGS+=-fPIC gui.pro -o Makefile
+ 
+ quasar/Makefile: quasar/quasar.pro
+-	cd quasar && $(QMAKE) quasar.pro -o Makefile
++	cd quasar && $(QMAKE) QMAKE_CXXFLAGS+=-fPIC quasar.pro -o Makefile
+ 
+ quasar_report/Makefile: quasar_report/quasar_report.pro
+-	cd quasar_report && $(QMAKE) quasar_report.pro -o Makefile
++	cd quasar_report && $(QMAKE) QMAKE_CXXFLAGS+=-fPIC quasar_report.pro -o Makefile
+ 
+ quasar_import/Makefile: quasar_import/quasar_import.pro
+-	cd quasar_import && $(QMAKE) quasar_import.pro -o Makefile
++	cd quasar_import && $(QMAKE) QMAKE_CXXFLAGS+=-fPIC quasar_import.pro -o Makefile
+ 
+ postgresql_driver/Makefile: postgresql_driver/postgresql_driver.pro
+-	cd postgresql_driver && $(QMAKE) postgresql_driver.pro -o Makefile
++	cd postgresql_driver && $(QMAKE) QMAKE_CXXFLAGS+=-fPIC postgresql_driver.pro -o Makefile
+ 
+ firebird_driver/Makefile: firebird_driver/firebird_driver.pro
+-	cd firebird_driver && $(QMAKE) firebird_driver.pro -o Makefile
++	cd firebird_driver && $(QMAKE) QMAKE_CXXFLAGS+=-fPIC firebird_driver.pro -o Makefile
+ 
+ merge_tr/Makefile: merge_tr/merge_tr.pro
+-	cd merge_tr && $(QMAKE) merge_tr.pro -o Makefile
++	cd merge_tr && $(QMAKE) QMAKE_CXXFLAGS+=-fPIC merge_tr.pro -o Makefile
+ 
+ model_editor/Makefile: model_editor/model_editor.pro
+-	cd model_editor && $(QMAKE) model_editor.pro -o Makefile
++	cd model_editor && $(QMAKE) QMAKE_CXXFLAGS+=-fPIC model_editor.pro -o Makefile
+ 
+ 
+ clean:

@@ -1,0 +1,22 @@
+--- quasar-1.4.7_GPL/firebird_driver/firebird_driver.h	2005-04-03 23:11:25.000000000 -0700
++++ quasar-1.4.7_GPL/firebird_driver/firebird_driver.h.new	2008-01-12 15:20:06.000000000 -0800
+@@ -110,8 +110,8 @@
+     FirebirdDriver* _driver;
+     FirebirdProcs* _procs;
+     QTextCodec* _codec;
+-    void* _db;
+-    void* _tr;
++    isc_db_handle _db;
++    isc_tr_handle _tr;
+ 
+     friend class FirebirdDriver;
+     friend class FirebirdStmt;
+@@ -167,7 +167,7 @@
+ 
+     FirebirdConn* _conn;
+     FirebirdProcs* _procs;
+-    void* _stmt;
++    isc_stmt_handle _stmt;
+     XSQLDA* _inputDA;
+     XSQLDA* _outputDA;
+     char _defaultParams[XSQLDA_LENGTH(DEFAULT_PARAM_COUNT)];
