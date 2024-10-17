@@ -4,7 +4,7 @@ Version:	1.4.7_GPL
 Release:	%mkrel 16
 License:	GPLv2
 Group:		Office
-URL:		http://www.linuxcanada.com
+URL:		https://www.linuxcanada.com
 Source0:	ftp://ftp.linuxcanada.com/pub/Quasar/1.4.7/source/%{name}-%{version}.tar.bz2
 Source1:	ftp://ftp.linuxcanada.com/pub/Quasar/1.4.7/manuals/quasar_install-1.4.7.pdf
 Source2:	ftp://ftp.linuxcanada.com/pub/Quasar/1.4.7/manuals/quasar_guide-1.4.7.pdf
